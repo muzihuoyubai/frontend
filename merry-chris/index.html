@@ -31,7 +31,7 @@
         font-family: 'Varela Round', Helvetica, sans-serif;
         font-weight: 600;
         text-decoration: none;
-        font-size: 13px;
+        font-size: 20px;
         color: #A7AAAE;
         position: absolute;
         left: 20px;
@@ -40,7 +40,7 @@
         padding: 12px 20px 10px 20px;
         border-radius: 50px;
         transition: all .1s ease-in-out;
-        text-transform: uppercase;
+        /*text-transform: uppercase;*/
         z-index: 5;
         cursor: pointer;
     }
@@ -214,16 +214,7 @@
     <canvas id="xmas" width="887" height="665" style="pointer-events: none;"></canvas>
 </section>
 
-<div class="buttons"><a id="info" title="Info" class="button">
-    <svg height="18px" version="1.1" viewBox="0 0 20 20" width="18px" style="margin: -2px;">
-        <path d="M9,15 L11,15 L11,9 L9,9 L9,15 L9,15 Z M10,0 C4.5,0 0,4.5 0,10 C0,15.5 4.5,20 10,20 C15.5,20 20,15.5 20,10 C20,4.5 15.5,0 10,0 L10,0 Z M10,18 C5.6,18 2,14.4 2,10 C2,5.6 5.6,2 10,2 C14.4,2 18,5.6 18,10 C18,14.4 14.4,18 10,18 L10,18 Z M9,7 L11,7 L11,5 L9,5 L9,7 L9,7 Z"></path>
-    </svg>
-</a><a id="fullscreen" title="Fullscreen" class="button">
-    <svg height="14px" version="1.1" viewBox="0 0 14 14" width="14px">
-        <path d="M2,9 L0,9 L0,14 L5,14 L5,12 L2,12 L2,9 L2,9 Z M0,5 L2,5 L2,2 L5,2 L5,0 L0,0 L0,5 L0,5 Z M12,12 L9,12 L9,14 L14,14 L14,9 L12,9 L12,12 L12,12 Z M9,0 L9,2 L12,2 L12,5 L14,5 L14,0 L9,0 L9,0 Z"></path>
-    </svg>
-</a></div>
-<a href="http://iprodev.com/" target="_blank" class="button">iprodev.com</a>
+<a href="http://www.banyuan.club/" target="_blank" class="button">www.banyuan.club</a>
 
 <div id="infodialog" class="dialog">
     <div class="dialog__overlay"></div>
@@ -250,25 +241,12 @@
 <script async="" src="js/classie.js"></script>
 <script async="" src="js/dialogFx.js"></script>
 <script>
-    var search = window.location.search,
-        fullscreenEl = document.getElementById('fullscreen'),
+    let fullscreenEl = document.getElementById('fullscreen'),
         retina = window.devicePixelRatio,
         nameHolder = document.getElementById('to-name'), fromNameHolder = document.getElementById('from-name'),
-        name = "Visitor", fromName = "iProDev", flakeCount = 450, mousemoveEffect = true;
+        flakeCount = 450, mousemoveEffect = true;
 
-    // if (search.length) {
-    //     var queries = queryString.parse(search);
-
-    // if (queries.name)
-    //     name = queries.name;
-    // if (queries.from)
-    //     fromName = queries.from;
-    // if (queries.flakes)
-    //     flakeCount = queries.flakes;
-    // if (queries.move)
-    mousemoveEffect = true;
-    flakeCount = 450;
-    // }
+    let name = "Visitor", fromName = "iProDev";
 
     document.title = 'Merry Christmas, ' + name + '!';
 
@@ -406,15 +384,15 @@
         };
 
         if (mousemoveEffect) {
-            canvas.addEventListener("mouseenter", function () {
-                canvas.addEventListener("mousemove", function (e) {
+            document.addEventListener("mouseenter", function () {
+                document.addEventListener("mousemove", function (e) {
                     mX = (e.pageX - canvas.offsetLeft) * retina,
                         mY = (e.pageY - canvas.offsetTop) * retina;
                 });
             });
 
-            canvas.addEventListener("mouseleave", function () {
-                canvas.removeEventListener("mousemove");
+            document.addEventListener("mouseleave", function () {
+                document.removeEventListener("mousemove");
                 mX = -300,
                     mY = -300;
             });
