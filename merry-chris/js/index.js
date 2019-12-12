@@ -12,7 +12,6 @@ fromNameHolder.innerHTML = fromName;
 
 document.addEventListener("DOMContentLoaded", function () {
     goSnow();
-
 });
 
 // iProDev Snow Christmas! \o/
@@ -32,9 +31,9 @@ var goSnow = function () {
         mX = -300,
         mY = -300;
 
-    flakeCount = parent.offsetWidth < 767 ? flakeCount / 3.5 : flakeCount,
+    flakeCount = parent.offsetWidth < 767 ? flakeCount / 3.5 : flakeCount;
 
-        canvas.width = parent.offsetWidth * retina;
+    canvas.width = parent.offsetWidth * retina;
     canvas.height = parent.offsetHeight * retina;
 
     function snowFrame() {
@@ -121,22 +120,10 @@ var goSnow = function () {
         snowFrame();
     };
 
-    if (mousemoveEffect) {
-        document.addEventListener("mouseenter", function () {
-            document.addEventListener("mousemove", function (e) {
-                mX = (e.pageX - canvas.offsetLeft) * retina;
-                mY = (e.pageY - canvas.offsetTop) * retina;
-            });
-        });
-
-        document.addEventListener("mouseleave", function () {
-            // document.removeEventListener("mousemove");
-            mX = -300,
-                mY = -300;
-        });
-    } else {
-        canvas.style.pointerEvents = 'none';
-    }
+    document.addEventListener("mousemove", function (e) {
+        mX = (e.pageX - canvas.offsetLeft) * retina;
+        mY = (e.pageY - canvas.offsetTop) * retina;
+    });
 
     window.addEventListener("resize", function () {
         canvas.width = parent.offsetWidth * retina;
@@ -150,61 +137,3 @@ var goSnow = function () {
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
-
-
-//Fullscreen API
-(function () {
-    fullScreenApi = {
-        supportsFullScreen: false,
-        isFullScreen: function () {
-            return false;
-        },
-        requestFullScreen: function () {
-        },
-        cancelFullScreen: function () {
-        },
-        fullScreenEventName: '',
-        prefix: ''
-    };
-    var browserPrefixes = 'webkit moz o ms khtml'.split(' ');
-
-    // check for native support
-    if (typeof document.cancelFullScreen != 'undefined') {
-        fullScreenApi.supportsFullScreen = true;
-    } else {
-        // check for fullscreen support by vendor prefix
-        for (var i = 0, il = browserPrefixes.length; i < il; i++) {
-            fullScreenApi.prefix = browserPrefixes[i];
-
-            if (typeof document[fullScreenApi.prefix + 'CancelFullScreen'] != 'undefined') {
-                fullScreenApi.supportsFullScreen = true;
-                break;
-            }
-        }
-    }
-
-    // update methods to do something useful
-    if (fullScreenApi.supportsFullScreen) {
-        fullScreenApi.fullScreenEventName = fullScreenApi.prefix + 'fullscreenchange';
-
-        fullScreenApi.isFullScreen = function () {
-            switch (this.prefix) {
-                case '':
-                    return document.fullScreen;
-                    break;
-                case 'webkit':
-                    return document.webkitIsFullScreen;
-                    break;
-                default:
-                    return document[this.prefix + 'FullScreen'];
-                    break;
-            }
-        };
-        fullScreenApi.requestFullScreen = function (el) {
-            return (this.prefix === '') ? el.requestFullScreen() : el[this.prefix + 'RequestFullScreen']();
-        };
-        fullScreenApi.cancelFullScreen = function (el) {
-            return (this.prefix === '') ? document.cancelFullScreen() : document[this.prefix + 'CancelFullScreen']();
-        };
-    }
-}());

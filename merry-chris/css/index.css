@@ -183,3 +183,10 @@ button.trigger {
         display: none;
     }
 }
+
+@font-face {
+    font-family: 'Pinyon Script';
+    src: url("fonts.woff2");
+    font-style: normal;
+    font-weight: 400;
+}
