@@ -1,9 +1,11 @@
+let name = "ALL", fromName = "半圆";
+
 let
     retina = window.devicePixelRatio,
     nameHolder = document.getElementById('to-name'), fromNameHolder = document.getElementById('from-name'),
-    flakeCount = 450, mousemoveEffect = true;
+    flakeCount = 450;
 
-let name = "ALL", fromName = "半圆";
+
 
 document.title = 'Merry Christmas, ' + name + '!';
 
@@ -84,7 +86,7 @@ var goSnow = function () {
             ctx.fill();
         }
         requestAnimationFrame(snowFrame);
-    };
+    }
 
     function reset(flake) {
         flake.x = Math.floor(Math.random() * canvas.width);
@@ -118,7 +120,7 @@ var goSnow = function () {
         }
 
         snowFrame();
-    };
+    }
 
     document.addEventListener("mousemove", function (e) {
         mX = (e.pageX - canvas.offsetLeft) * retina;
@@ -132,8 +134,7 @@ var goSnow = function () {
 
     init();
 };
-// Returns a random integer between min (included) and max (excluded)
-// Using Math.round() will give you a non-uniform distribution!
+
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
